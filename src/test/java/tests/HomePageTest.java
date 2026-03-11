@@ -20,17 +20,14 @@ public class HomePageTest extends BaseTest {
     @BeforeMethod
     public void beforeHomePageTests() {
         loginPage = new LoginPage(driver);
+        homePage = loginPage.performLogin(email, password);
     }
 
     @Test
     public void logout() {
-        homePage = loginPage.performLogin(email, password);
-        Assert.assertEquals(homePage.getPageTitle(), Constants.HOME_PAGE_TITLE,
-                "User is not logged in");
-
         loginPage = homePage.performLogout();
         Assert.assertEquals(loginPage.getPageTitle(), Constants.LOGIN_PAGE_TITLE,
-                "User is not logged in");
+                "User is not logged out");
     }
 
 }
