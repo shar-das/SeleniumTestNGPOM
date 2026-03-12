@@ -14,15 +14,14 @@ public class HomePage {
     LoginPage loginPage;
 
     @FindBy(xpath="//h3[contains(text(),'Electronics')]//following-sibling::a")
-    WebElement electronicsLink;
+    private WebElement electronicsLink;
 
     @FindBy(id="logoutBtn")
-    WebElement logoutButton;
+    private WebElement logoutButton;
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
         this.commonMethods = new CommonMethods(driver);
-        this.electronicsPage = new ElectronicsPage(driver);
         PageFactory.initElements(driver, this);
     }
 

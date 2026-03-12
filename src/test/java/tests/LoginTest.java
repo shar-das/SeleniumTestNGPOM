@@ -39,12 +39,12 @@ public class LoginTest extends BaseTest {
 
     @DataProvider(name="correctLoginData")
     public Object[][] correctLoginDataProvider() throws IOException {
-        return ExcelReader.readExcel("Correct Login Data");
+        return ExcelReader.readloginCredentialsExcel("Correct Login Data");
     }
 
     @DataProvider(name="incorrectLoginData")
     public Object[][] incorrectLoginDataProvider() throws IOException {
-        return ExcelReader.readExcel("Incorrect Login Data");
+        return ExcelReader.readloginCredentialsExcel("Incorrect Login Data");
     }
 
 }

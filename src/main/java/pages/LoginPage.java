@@ -15,16 +15,16 @@ public class LoginPage {
     HomePage homePage;
 
     @FindBy(id="email")
-    WebElement emailField;
+    private WebElement emailField;
 
     @FindBy(id="errorMsg")
-    WebElement errorMessage;
+    private WebElement errorMessage;
 
     @FindBy(id="loginBtn")
-    WebElement loginButton;
+    private WebElement loginButton;
 
     @FindBy(id="password")
-    WebElement passwordField;
+    private WebElement passwordField;
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;

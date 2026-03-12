@@ -4,32 +4,52 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ExcelReader {
 
-    static FileInputStream file;
+    static FileInputStream fis;
     static XSSFWorkbook workbook;
     static XSSFSheet sheet;
+    static List<String> expectedProducts;
+    static int rows, cols, i, j;
 
-    public static Object[][] readExcel(String sheetName) throws IOException {
+    public static Object[][] readloginCredentialsExcel(String sheetName) throws IOException {
 
-        file = new FileInputStream("src/main/resources/loginTestData.xlsx");
-        workbook = new XSSFWorkbook(file);
+        fis = new FileInputStream("src/main/resources/loginTestData.xlsx");
+        workbook = new XSSFWorkbook(fis);
         sheet = workbook.getSheet(sheetName);
 
-        int rows = sheet.getLastRowNum();
-        int cols = sheet.getRow(0).getLastCellNum();
+        rows = sheet.getLastRowNum();
+        cols = sheet.getRow(0).getLastCellNum();
 
         Object[][] data = new Object[rows][cols];
 
-        for(int i=0; i<rows; i++)  {
-            for(int j=0; j<cols; j++) {
+        for(i=0; i<rows; i++)  {
+            for(j=0; j<cols; j++) {
                 data[i][j] = sheet.getRow(i+1).getCell(j).getStringCellValue();
             }
         }
 
         return data;
+    }
+
+    public static List<String> readProductsListExcel(String fileName) throws IOException {
+        fis = new FileInputStream("src/main/resources/" + fileName + ".xlsx");
+        workbook = new XSSFWorkbook(fis);
+        sheet = workbook.getSheetAt(0);
+
+        rows = sheet.getLastRowNum();
+        expectedProducts = new ArrayList<>();
+
+        for(i=0; i<=rows; i++) {
+            expectedProducts.add(sheet.getRow(i).getCell(0).getStringCellValue());
+        }
+
+        return expectedProducts;
     }
 
 }
