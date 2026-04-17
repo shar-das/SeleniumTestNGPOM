@@ -33,6 +33,7 @@ public class ElectronicsPageTest extends BaseTest {
 
     @Test
     public void validateElectronicProducts() throws IOException {
-        Assert.assertTrue(electronicsPage.compareProducts());
+        Assert.assertTrue(electronicsPage.compareProducts(),
+                "Electronic products are not matching");
     }
 }

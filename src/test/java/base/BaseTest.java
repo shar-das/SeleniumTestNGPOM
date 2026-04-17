@@ -45,6 +45,7 @@ public class BaseTest {
                 throw new RuntimeException("Browser not supported: " + browser);
         }
 
+        
         driver.get(baseUrl);
     }
 
