@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
+import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import utils.ConfigFileReader;
@@ -18,7 +19,7 @@ public class BaseTest {
     boolean isHeadless = false;
 
     @BeforeMethod
-    public void setUp() {
+    public void setUp(ITestContext context) {
         browser = ConfigFileReader.getProperty("browser");
         isHeadless = Boolean.parseBoolean(ConfigFileReader.getProperty("headless"));
         baseUrl = ConfigFileReader.getProperty("url");
@@ -45,7 +46,7 @@ public class BaseTest {
                 throw new RuntimeException("Browser not supported: " + browser);
         }
 
-        
+        context.setAttribute("driver", driver);
         driver.get(baseUrl);
     }
 
