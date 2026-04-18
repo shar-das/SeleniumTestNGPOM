@@ -2,6 +2,10 @@
 
 <suite name = "Ecommerce Test Suite">
 
+	<listeners>
+		<listener class-name="listeners.TestListener"/>
+	</listeners>
+
     <test name = "Automation Test">
         <classes>
             <class name = "tests.LoginTest" />
