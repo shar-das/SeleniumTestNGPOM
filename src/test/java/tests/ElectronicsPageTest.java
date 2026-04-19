@@ -31,17 +31,20 @@ public class ElectronicsPageTest extends BaseTest {
     public void numberOfElectronicProducts() {
         int noOfProducts = electronicsPage.numberOfProducts();
         Assert.assertEquals(noOfProducts, Constants.NO_OF_ELECTRONIC_PRODUCTS,
-                "Number of Electronics products is incorrect");
+                "Number of Electronics products is incorrect!");
     }
 
     @Test
     public void validateElectronicProducts() throws IOException {
         Assert.assertTrue(electronicsPage.compareProducts(),
-                "Electronic products are not matching");
+                "Electronic products are not matching!");
     }
     
     @Test
     public void navigationToElectronicProductPage() {
     	productPage = electronicsPage.clickOnProduct("Toshiba 4K HDR TV");
+    	Assert.assertTrue(productPage.verifyPageElements("Toshiba 4K HDR TV", "$350", 
+    			"Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit clita ea. Sanc ipsum et, labore clita lorem magna duo dolor no sea Nonumy"),
+    			"Navigation to Product page is not working!");
     }
 }

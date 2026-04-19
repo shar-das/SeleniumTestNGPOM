@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.CommonMethods;
 
-public class HomePage {
+public class HomePage extends HeaderPage {
 
     WebDriver driver;
     CommonMethods commonMethods;
@@ -25,10 +25,8 @@ public class HomePage {
     @FindBy(xpath="//h3[contains(text(),'Electronics')]//following-sibling::a")
     private WebElement electronicsLink;
 
-    @FindBy(id="logoutBtn")
-    private WebElement logoutButton;
-
     public HomePage(WebDriver driver) {
+    	super(driver);
         this.driver = driver;
         this.commonMethods = new CommonMethods(driver);
         PageFactory.initElements(driver, this);

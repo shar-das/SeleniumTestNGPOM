@@ -52,7 +52,7 @@ public class TestListener implements ITestListener {
 	public void onStart(ITestContext context) {
 		System.out.println();
 		System.out.println("TEST EXECUTION STARTED: " + context.getName());
-		System.out.println("-------------------------------------------------------------");
+		System.out.println("---------------------------------------------------------------------------------------------");
 	}
 	
 	@Override
@@ -66,14 +66,14 @@ public class TestListener implements ITestListener {
 	@Override
 	public void onTestSuccess(ITestResult result) {
 		logger.info("{}: {}", colorizeStatus("PASSED"), result.getMethod().getMethodName());
-		System.out.println("-------------------------------------------------------------");
+		System.out.println("---------------------------------------------------------------------------------------------");
 		test.get().pass("Test passed");
 	}
 	
 	@Override
 	public void onTestFailure(ITestResult result) {
 		logger.info("{}: {}", colorizeStatus("FAILED"), result.getMethod().getMethodName());
-		System.out.println("-------------------------------------------------------------");
+		System.out.println("---------------------------------------------------------------------------------------------");
 		test.get().fail(result.getThrowable());
 		
 		WebDriver driver = (WebDriver) result.getTestContext().getAttribute("driver");
@@ -83,7 +83,7 @@ public class TestListener implements ITestListener {
 	@Override
 	public void onTestSkipped(ITestResult result) {
 		logger.info("{}: {}", colorizeStatus("SKIPPED"), result.getMethod().getMethodName());
-		System.out.println("-------------------------------------------------------------");
+		System.out.println("---------------------------------------------------------------------------------------------");
 		test.get().skip("Test skipped");
 		
 		WebDriver driver = (WebDriver) result.getTestContext().getAttribute("driver");
