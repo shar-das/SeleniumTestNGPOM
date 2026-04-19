@@ -74,7 +74,6 @@ public class TestListener implements ITestListener {
 	public void onTestFailure(ITestResult result) {
 		logger.info("{}: {}", colorizeStatus("FAILED"), result.getMethod().getMethodName());
 		System.out.println("-------------------------------------------------------------");
-		test.get().fail(result.getThrowable().getMessage());
 		test.get().fail(result.getThrowable());
 		
 		WebDriver driver = (WebDriver) result.getTestContext().getAttribute("driver");
