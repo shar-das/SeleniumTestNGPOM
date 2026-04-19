@@ -18,8 +18,8 @@ public class ExtentManager {
 			extent = new ExtentReports();
 			extent.attachReporter(reporter);
 			
-			extent.setSystemInfo("Tester", "Sharmistha Das");
-			extent.setSystemInfo("Environment", "QA");
+			extent.setSystemInfo("Tester", ConfigFileReader.getProperty("testerName"));
+			extent.setSystemInfo("Environment", ConfigFileReader.getProperty("environment"));
 			extent.setSystemInfo("Browser", ConfigFileReader.getProperty("browser"));
 			extent.setSystemInfo("OS", System.getProperty("os.name"));
 		}

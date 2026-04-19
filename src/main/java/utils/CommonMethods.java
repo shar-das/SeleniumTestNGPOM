@@ -1,6 +1,9 @@
 package utils;
 
 import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -20,6 +23,13 @@ public class CommonMethods {
     public boolean elementIsDisplayed(WebElement element) {
         waitForElement(element);
         return element.isDisplayed();
+    }
+    
+    public static String getCurrentDateTime(String pattern) {
+    	LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+        String formattedDateTime = now.format(formatter);
+        return formattedDateTime;
     }
 
     public void waitForElement(WebElement element) {
