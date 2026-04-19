@@ -26,9 +26,8 @@ public class HomePageTest extends BaseTest {
     @Test
     public void logout() {
         loginPage = homePage.performLogout();
-//        Assert.assertEquals(loginPage.getPageTitle(), Constants.LOGIN_PAGE_TITLE,
-//                "User is not logged out");
-        Assert.assertTrue(false);
+        Assert.assertEquals(loginPage.getPageTitle(), Constants.LOGIN_PAGE_TITLE,
+                "User is not logged out");
     }
 
 }
