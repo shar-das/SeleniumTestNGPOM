@@ -13,6 +13,15 @@ public class HomePage {
     ElectronicsPage electronicsPage;
     LoginPage loginPage;
 
+    @FindBy(xpath="//h3[contains(text(),'Men')]//following-sibling::a")
+    private WebElement menFashionLink;
+    
+    @FindBy(xpath="//h3[contains(text(),'Women')]//following-sibling::a")
+    private WebElement womenFashionLink;
+    
+    @FindBy(xpath="//h3[contains(text(),'Kids')]//following-sibling::a")
+    private WebElement kidsFashionLink;
+    
     @FindBy(xpath="//h3[contains(text(),'Electronics')]//following-sibling::a")
     private WebElement electronicsLink;
 
