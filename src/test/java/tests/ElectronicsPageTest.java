@@ -20,27 +20,27 @@ public class ElectronicsPageTest extends BaseTest {
     LoginPage loginPage;
     ProductPage productPage;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun=true)
     public void beforeElectronicsPageTest() {
         loginPage = new LoginPage(driver);
         homePage = loginPage.performLogin(email, password);
         electronicsPage = homePage.goToElectronicsPage();
     }
 
-    @Test
+    @Test(groups={"regression"})
     public void numberOfElectronicProducts() {
         int noOfProducts = electronicsPage.numberOfProducts();
         Assert.assertEquals(noOfProducts, Constants.NO_OF_ELECTRONIC_PRODUCTS,
                 "Number of Electronics products is incorrect!");
     }
 
-    @Test
+    @Test(groups={"regression"})
     public void validateElectronicProducts() throws IOException {
         Assert.assertTrue(electronicsPage.compareProducts(),
                 "Electronic products are not matching!");
     }
     
-    @Test
+    @Test(groups={"regression","smoke"})
     public void navigationToElectronicProductPage() {
     	productPage = electronicsPage.clickOnProduct("Toshiba 4K HDR TV");
     	Assert.assertTrue(productPage.verifyPageElements("Toshiba 4K HDR TV", "$350", 

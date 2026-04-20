@@ -18,7 +18,7 @@ public class ElectronicProductPageTest extends BaseTest {
 	LoginPage loginPage;
 	ProductPage productPage;
 	
-	@BeforeMethod
+	@BeforeMethod(alwaysRun=true)
     public void beforeElectronicsPageTest() {
         loginPage = new LoginPage(driver);
         homePage = loginPage.performLogin(email, password);
@@ -26,12 +26,13 @@ public class ElectronicProductPageTest extends BaseTest {
         productPage = electronicsPage.clickOnProduct("Toshiba 4K HDR TV");
     }
 	
-	@Test
+	@Test(groups={"regression"})
 	public void addToCart() {
 		productPage.clickAddToCart();
 		Assert.assertTrue(productPage.verifyCartCount("1"), "Item is not added to cart!");
 	}
 	
+	@Test(groups={"regression"})
 	public void goToHomePage() {
 		homePage = productPage.clickGoToBack();
 		Assert.assertEquals(homePage.getPageTitle(), Constants.HOME_PAGE_TITLE,

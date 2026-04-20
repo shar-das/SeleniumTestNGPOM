@@ -17,19 +17,21 @@ public class LoginTest extends BaseTest {
     LoginPage loginPage;
     HomePage homePage;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun=true)
     public void beforeLoginTests() {
         loginPage = new LoginPage(driver);
     }
 
-    @Test(dataProvider="correctLoginData")
+    @Test(dataProvider="correctLoginData",
+    		groups={"regression","smoke"})
     public void loginCorrectCredentials(String email, String password) {
         homePage = loginPage.performLogin(email, password);
         Assert.assertEquals(homePage.getPageTitle(), Constants.HOME_PAGE_TITLE,
                 "User is not logged in!");
     }
 
-    @Test(dataProvider="incorrectLoginData")
+    @Test(dataProvider="incorrectLoginData",
+    		groups={"regression"})
     public void loginIncorrectCredentials(String email, String password) {
         loginPage.performLogin(email, password);
         Assert.assertTrue(loginPage.errorMessageDisplayed());

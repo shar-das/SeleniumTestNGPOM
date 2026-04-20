@@ -17,7 +17,7 @@ public class BaseTest {
     String browser, baseUrl;
     boolean isHeadless = false;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun=true)
     public void setUp(ITestContext context) {
         browser = ConfigFileReader.getProperty("browser");
         isHeadless = Boolean.parseBoolean(ConfigFileReader.getProperty("headless"));
@@ -32,7 +32,7 @@ public class BaseTest {
         driver.get(baseUrl);
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun=true)
     public void tearDown() {
         driver.quit();
     }

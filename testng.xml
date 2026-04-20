@@ -8,6 +8,12 @@
 	</listeners>
 
     <test name = "Automation Test">
+    	<groups>
+    		<run>
+    			<include name="regression"></include>
+    			<include name="smoke"></include>
+    		</run>
+    	</groups>
         <classes>
         	<class name = "tests.LoginTest" />
         	<class name = "tests.HomePageTest" />

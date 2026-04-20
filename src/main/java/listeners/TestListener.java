@@ -59,6 +59,10 @@ public class TestListener implements ITestListener {
 	public void onTestStart(ITestResult result) {
 		logger.info("{}: {}", colorizeStatus("STARTED"), result.getMethod().getMethodName());
 		ExtentTest extentTest = extent.createTest(result.getMethod().getMethodName());
+		
+		for(String group:result.getMethod().getGroups())
+			extentTest.assignCategory(group);
+		
 		test.set(extentTest);
 		test.get().info("Test started");
 	}
