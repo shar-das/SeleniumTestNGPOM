@@ -9,17 +9,17 @@ public class HeaderPage {
 	
 	WebDriver driver;
 	
-	@FindBy(css = ".text-decoration-none")
-	WebElement logo;
-
-	@FindBy(xpath = "//a[@id='cartdesk']")
-	WebElement cartButton;
-
-	@FindBy(xpath = "//span[@id='cartCount']")
-	WebElement cartCount;
-
-	@FindBy(id = "logoutBtn")
-	WebElement logoutButton;
+	@FindBy(xpath="text-decoration-none")
+	static WebElement logo;
+	
+	@FindBy(xpath="//a[@id='cartdesk']")
+	static WebElement cartButton;
+	
+	@FindBy(xpath="//span[@id='cartCount']")
+	static WebElement cartCount;
+	
+	@FindBy(id="logoutBtn")
+    static WebElement logoutButton;
 	
 	public HeaderPage(WebDriver driver) {
 		this.driver = driver;
