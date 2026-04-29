@@ -7,6 +7,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
+import tests.dataproviders.LoginDataProvider;
 import base.BaseTest;
 import utils.ExcelReader;
 
@@ -22,7 +23,7 @@ public class LoginTest extends BaseTest {
         loginPage = new LoginPage(driver);
     }
 
-    @Test(dataProvider="correctLoginData",
+    @Test(dataProvider="correctLoginData", dataProviderClass=LoginDataProvider.class,
     		groups={"regression","smoke"})
     public void loginCorrectCredentials(String email, String password) {
         homePage = loginPage.performLogin(email, password);
@@ -30,7 +31,7 @@ public class LoginTest extends BaseTest {
                 "User is not logged in!");
     }
 
-    @Test(dataProvider="incorrectLoginData",
+    @Test(dataProvider="incorrectLoginData", dataProviderClass=LoginDataProvider.class,
     		groups={"regression"})
     public void loginIncorrectCredentials(String email, String password) {
         loginPage.performLogin(email, password);
@@ -38,15 +39,5 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(loginPage.getErrorMessage(), Constants.LOGIN_ERROR_MESSAGE,
                 "Error message is not displayed on login page!");
     }
-
-    @DataProvider(name="correctLoginData")
-    public Object[][] correctLoginDataProvider() throws IOException {
-        return ExcelReader.readloginCredentialsExcel("Correct Login Data");
-    }
-
-    @DataProvider(name="incorrectLoginData")
-    public Object[][] incorrectLoginDataProvider() throws IOException {
-        return ExcelReader.readloginCredentialsExcel("Incorrect Login Data");
-    }
-
+    
 }
