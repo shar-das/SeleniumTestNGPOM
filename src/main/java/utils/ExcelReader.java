@@ -19,7 +19,7 @@ public class ExcelReader {
 
     public static Object[][] readloginCredentialsExcel(String sheetName) throws IOException {
 
-        fis = new FileInputStream("src/main/resources/loginTestData.xlsx");
+        fis = new FileInputStream("src/test/resources/loginTestData.xlsx");
         workbook = new XSSFWorkbook(fis);
         sheet = workbook.getSheet(sheetName);
 
@@ -38,7 +38,7 @@ public class ExcelReader {
     }
 
     public static List<String> readProductsListExcel(String fileName) throws IOException {
-        fis = new FileInputStream("src/main/resources/" + fileName + ".xlsx");
+        fis = new FileInputStream("src/test/resources/" + fileName + ".xlsx");
         workbook = new XSSFWorkbook(fis);
         sheet = workbook.getSheetAt(0);
 
