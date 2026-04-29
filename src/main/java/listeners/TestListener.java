@@ -2,7 +2,9 @@ package listeners;
 
 import java.io.IOException;
 
+import org.openqa.selenium.NoSuchSessionException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -39,11 +41,20 @@ public class TestListener implements ITestListener {
 	}
 	
 	private void attachScreenshot(WebDriver driver, String methodName) {
+		if (driver == null) {
+			logger.warn("Skipping screenshot because WebDriver is not available");
+			return;
+		}
+
 		try {
 			String screenshotPath = ScreenshotUtil.takeScreenshot(driver, methodName);
 			test.get().addScreenCaptureFromPath(screenshotPath);
 		} catch (IOException e) {
 			logger.error("Failed to capture screenshot - " + e.getMessage());
+		} catch (NoSuchSessionException e) {
+			logger.error("Failed to capture screenshot because the browser session is already closed - " + e.getMessage());
+		} catch (WebDriverException e) {
+			logger.error("Failed to capture screenshot due to WebDriver error - " + e.getMessage());
 		}
 		
 	}
@@ -90,8 +101,10 @@ public class TestListener implements ITestListener {
 		System.out.println("---------------------------------------------------------------------------------------------");
 		test.get().skip("Test skipped");
 		
-		WebDriver driver = (WebDriver) result.getTestContext().getAttribute("driver");
-		attachScreenshot(driver, result.getMethod().getMethodName());
+		if (!result.wasRetried()) {
+			WebDriver driver = (WebDriver) result.getTestContext().getAttribute("driver");
+			attachScreenshot(driver, result.getMethod().getMethodName());
+		}
 	}
 	
 

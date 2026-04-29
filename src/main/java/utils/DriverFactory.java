@@ -21,6 +21,9 @@ public class DriverFactory {
 	            ChromeOptions chromeOptions = new ChromeOptions();
 	            if(isHeadless) chromeOptions.addArguments("--headless=new");
 	            chromeOptions.addArguments("--window-size=1920,1080");
+	            chromeOptions.addArguments("--disable-gpu");
+	            chromeOptions.addArguments("--disable-dev-shm-usage");
+	            chromeOptions.addArguments("--no-sandbox");
 	            chromeOptions.addArguments("--disable-features=PasswordLeakDetection");
 	            chromeOptions.addArguments("--disable-save-password-bubble");
 	            chromeOptions.addArguments("--disable-notifications");
@@ -38,6 +41,9 @@ public class DriverFactory {
 	            EdgeOptions edgeOptions = new EdgeOptions();
 	            if(isHeadless) edgeOptions.addArguments("--headless=new");
 	            edgeOptions.addArguments("--window-size=1920,1080");
+	            edgeOptions.addArguments("--disable-gpu");
+	            edgeOptions.addArguments("--disable-dev-shm-usage");
+	            edgeOptions.addArguments("--no-sandbox");
 	            tlDriver.set(new EdgeDriver(edgeOptions));
 	            break;
 	
